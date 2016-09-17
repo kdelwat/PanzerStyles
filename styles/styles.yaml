@@ -1,0 +1,45 @@
+Base:
+    all:
+        commandline:
+            smart: true
+            standalone: true
+
+        metadata:
+            title: "Untitled"
+            author:
+                - name: "Cadel Watson"
+    latex:
+        metadata:
+            lang: australian
+            fontsize: 12pt
+            papersize: a4paper
+            geometry: a4paper
+            geometry: top=1.5in
+            geometry: bottom=1.5in
+
+        commandline:
+            latex-engine: "`xelatex`"
+
+Notes:
+    parent:
+        - Base
+
+    latex:
+        template: notes.tex
+        metadata:
+            mainfont: Junction
+            sansfont: Junction Light
+        filter:
+            - run: example.py
+
+Essay:
+    parent:
+        - Base
+
+    latex:
+        template: essay.tex
+        metadata:
+            mainfont: Linux Libertine
+            sansfont: Linux Biolinum
+        filter:
+            - run: small_caps.py
