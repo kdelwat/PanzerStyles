@@ -1,15 +1,12 @@
 \documentclass[$fontsize$,$lang$,$papersize$,$for(classoption)$$classoption$$sep$,$endfor$]{article}
 
-\listfiles
-$if(linestretch)$
-\usepackage{setspace}
-\setstretch{$linestretch$}
-$endif$
-\usepackage{amssymb,amsmath}
-\usepackage{fixltx2e} % provides \textsubscript
+\usepackage{amssymb,amsmath} % maths support
+\usepackage{fixltx2e} % \textsubscript
+\usepackage{paracol} % parallel columns for examples
 
-\usepackage{paracol}
-\usepackage{textcomp}
+%------------------------------------------------
+% XETEX SETTINGS
+%------------------------------------------------
 
 \usepackage{mathspec}
 \usepackage{xltxtra,xunicode}
@@ -18,53 +15,45 @@ $endif$
 
 \usepackage{fontspec}
 $if(mainfont)$
-    \setmainfont[]{$mainfont$}
-
+\setmainfont[]{$mainfont$}
 $endif$
 $if(sansfont)$
-    \setsansfont{$sansfont$}
-    \newfontfamily\headingfont{$sansfont$}
+\setsansfont{$sansfont$}
+\newfontfamily\headingfont{$sansfont$}
 $endif$
 $if(monofont)$
-    \setmonofont[Mapping=tex-ansi]{$monofont$}
+\setmonofont[Mapping=tex-ansi]{$monofont$}
 $endif$
 $if(mathfont)$
-    \setmathfont(Digits,Latin,Greek){$mathfont$}
+\setmathfont(Digits,Latin,Greek){$mathfont$}
 $endif$
 
-% use upquote if available, for straight quotes in verbatim environments
+%------------------------------------------------
+% MISC SETTINGS
+%------------------------------------------------
+
 \IfFileExists{upquote.sty}{\usepackage{upquote}}{}
-% use microtype if available
+
 \IfFileExists{microtype.sty}{%
 \usepackage[protrusion=true]{microtype}
-\UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+\UseMicrotypeSet[protrusion]{basicmath}%
 }{}
+
 $if(geometry)$
 \usepackage[$for(geometry)$$geometry$$sep$,$endfor$]{geometry}
 $endif$
 
-\usepackage{polyglossia}
-\setmainlanguage{$mainlang$}
-
-$if(natbib)$
-\usepackage{natbib}
-\bibliographystyle{$if(biblio-style)$$biblio-style$$else$plainnat$endif$}
-$endif$
-$if(biblatex)$
-\usepackage{biblatex}
-$if(biblio-files)$
-\bibliography{$biblio-files$}
-$endif$
+$if(strikeout)$
+\usepackage[normalem]{ulem}
+% avoid problems with \sout in headers with hyperref:
+\pdfstringdefDisableCommands{\renewcommand{\sout}{}}
 $endif$
 
-$if(highlighting-macros)$
-$highlighting-macros$
-$endif$
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{6pt plus 2pt minus 1pt}
+\setlength{\emergencystretch}{3em}  % prevent overfull lines
 
-$if(verbatim-in-note)$
-\usepackage{fancyvrb}
-\VerbatimFootnotes
-$endif$
+\providecommand{\tightlist}{\setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
 
 $if(tables)$
 \usepackage{longtable,booktabs}
@@ -82,8 +71,12 @@ $if(graphics)$
 \setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
 $endif$
 
-\usepackage[setpagesize=false, % page size defined by xetex
-            unicode=false, % unicode breaks when used with xetex
+%------------------------------------------------
+% HYPERLINK SETTINGS
+%------------------------------------------------
+
+\usepackage[setpagesize=false,
+            unicode=false,
             xetex]{hyperref}
 
 \hypersetup{breaklinks=true,
@@ -95,34 +88,9 @@ $endif$
             urlcolor=$if(urlcolor)$$urlcolor$$else$blue$endif$,
             linkcolor=$if(linkcolor)$$linkcolor$$else$magenta$endif$,
             pdfborder={0 0 0}}
-\urlstyle{same}  % don't use monospace font for urls
+\urlstyle{same}
 
-$if(links-as-notes)$
-% Make links footnotes instead of hotlinks:
-\renewcommand{\href}[2]{#2\footnote{\url{#1}}}
-$endif$
-
-$if(strikeout)$
-\usepackage[normalem]{ulem}
-% avoid problems with \sout in headers with hyperref:
-\pdfstringdefDisableCommands{\renewcommand{\sout}{}}
-$endif$
-
-\setlength{\parindent}{0pt}
-\setlength{\parskip}{6pt plus 2pt minus 1pt}
-\setlength{\emergencystretch}{3em}  % prevent overfull lines
-
-\providecommand{\tightlist}{\setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
-
-$if(numbersections)$
-\setcounter{secnumdepth}{5}
-$else$
-\setcounter{secnumdepth}{0}
-$endif$
-
-$if(verbatim-in-note)$
-\VerbatimFootnotes % allows verbatim text in footnotes
-$endif$
+\setcounter{secnumdepth}{0} % don't number sections
 
 %------------------------------------------------
 % TITLE SETTINGS
@@ -154,8 +122,8 @@ $endif$
 \date{}
 \postdate{}
 
+% modify spacing and size of headings
 \usepackage{titlesec}
-\usepackage{titling}
 
 \titlespacing\section{0pt}{4pt plus 2pt minus 2pt}{-2pt plus 2pt minus 2pt}
 \titlespacing\subsection{0pt}{4pt plus 2pt minus 2pt}{-2pt plus 2pt minus 2pt}
@@ -173,16 +141,7 @@ $endif$
 $if(title)$
 \maketitle
 $endif$
-$if(abstract)$
-\begin{abstract}
-$abstract$
-\end{abstract}
-$endif$
 
-$for(include-before)$
-$include-before$
-
-$endfor$
 $if(toc)$
 {
 \hypersetup{linkcolor=black}
@@ -190,33 +149,15 @@ $if(toc)$
 \tableofcontents
 }
 $endif$
+
 $if(lot)$
 \listoftables
 $endif$
+
 $if(lof)$
 \listoffigures
 $endif$
+
 $body$
 
-$if(natbib)$
-$if(biblio-files)$
-$if(biblio-title)$
-$if(book-class)$
-\renewcommand\bibname{$biblio-title$}
-$else$
-\renewcommand\refname{$biblio-title$}
-$endif$
-$endif$
-\bibliography{$biblio-files$}
-
-$endif$
-$endif$
-$if(biblatex)$
-\printbibliography$if(biblio-title)$[title=$biblio-title$]$endif$
-
-$endif$
-$for(include-after)$
-$include-after$
-
-$endfor$
 \end{document}
