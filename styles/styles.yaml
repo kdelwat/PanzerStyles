@@ -27,8 +27,8 @@ Notes:
     latex:
         template: notes.tex
         metadata:
-            mainfont: Junction
-            sansfont: Junction Light
+            mainfont: TeX Gyre Adventor
+            sansfont: Raleway
         filter:
             - run: example.py
 
