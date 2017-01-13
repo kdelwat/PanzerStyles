@@ -1,0 +1,103 @@
+/* General formatting of elements, designed to be easily overwritable by child
+ * themes */
+body {
+  color: #212121;
+  width: 60%;
+  margin: 0 auto;
+  font-size: 16px;
+  line-height: 1.6; }
+
+p {
+  font-family: Open Sans, sans-serif;
+  margin: 0;
+  padding-bottom: 0.5em; }
+
+p ~ p {
+  margin-bottom: 1em; }
+
+a {
+  text-decoration: none;
+  color: #ff5722; }
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: Open Sans, sans-serif;
+  font-weight: 300;
+  margin-top: 0.5em;
+  margin-bottom: 0.25em; }
+
+h1::after {
+  content: "";
+  display: block;
+  border-bottom: 2px #212121 solid; }
+
+#header {
+  text-align: center;
+  margin-bottom: 2em; }
+  #header > * {
+    margin-bottom: 0; }
+  #header > .title {
+    font-weight: 300;
+    font-size: 80px;
+    margin-top: 0; }
+  #header > .title::after {
+    border: none; }
+  #header .author, #header .date {
+    font-size: 24px;
+    margin-top: 0;
+    font-style: italic; }
+
+h1 {
+  font-size: 45px; }
+
+h2 {
+  font-size: 34px; }
+
+h3 {
+  font-size: 24px; }
+
+h4 {
+  font-size: 20px; }
+
+h5 {
+  font-size: 18px; }
+
+/* Table of contents formatting */
+#TOC::before {
+  content: "Contents";
+  font-size: 24px;
+  display: block;
+  border-bottom: 2px #212121 solid; }
+
+#TOC ul {
+  list-style: none;
+  padding-left: 0;
+  font-size: 16px; }
+
+#TOC ul ul {
+  padding-left: 2em; }
+
+#TOC > ul {
+  font-size: 20px; }
+
+/* Table formatting */
+table {
+  margin: 1.5em auto;
+  border-collapse: collapse;
+  border: 1px #212121 solid;}
+
+th {
+  font-weight: normal;
+  color: white; }
+
+th, td, tf {
+  padding: 0.5em; }
+
+tr.even {
+  background-color: #ffccbc; }
+
+tr.odd {
+  background-color: #fbe9e7; }
+
+tr.header {
+  background-color: #ff5722; }
+

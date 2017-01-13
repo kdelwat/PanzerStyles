@@ -32,6 +32,13 @@ Notes:
         filter:
             - run: example.py
 
+    html:
+      commandline:
+        katex: true
+        css: "`/home/cadel/.panzer/css/notes.css`"
+        include-in-header: "`/home/cadel/.panzer/css/fonts.html`"
+        table-of-contents: true
+
 Essay:
     parent:
         - Base
