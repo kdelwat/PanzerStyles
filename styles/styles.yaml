@@ -27,8 +27,8 @@ Notes:
     latex:
         template: notes.tex
         metadata:
-            mainfont: TeX Gyre Adventor
-            sansfont: Raleway
+            mainfont: Open Sans
+            sansfont: Open Sans Light
         filter:
             - run: example.py
 
